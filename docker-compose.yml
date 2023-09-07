@@ -1,0 +1,40 @@
+version: "3.4"
+
+services:
+    test_task:
+        restart: always
+        build: .
+        container_name: ${SERVICE_NAME}
+        command: bash -c "uvicorn main:app --workers 1 --host 0.0.0.0 --port ${SERVICE_PORT} --reload"
+
+        env_file:
+            - .env
+        volumes:
+            - ./app:/app
+
+        ports:
+            - "${SERVICE_PORT}:${SERVICE_PORT}"
+        networks:
+            - default
+
+    postgres:
+        restart: always
+        image: postgres:14.3
+        container_name: ${POSTGRES_HOST}
+        command: -p ${POSTGRES_PORT}
+        ports:
+            - "0.0.0.0:${POSTGRES_PORT}:${POSTGRES_PORT}"
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: ${POSTGRES_DB}
+        volumes:
+            - /containers/src/test_task/postgres/data:/var/lib/postgresql/data
+        networks:
+            - default
+
+networks:
+    default:
+        external:
+            name: test
+
