@@ -91,12 +91,10 @@ async def update_pillow(db: AsyncSession, pillow: models.Pillow = None, user_id:
         q = select(models.Pillow).where(models.Pillow.uuid == uuid)
         res = await db.execute(q)
         db_pillow = res.scalars().first()
-    # print("type_____________", type(pillow))
     if db_pillow:
         # col_obj: sqlalchemy.schema.Column
         for col_obj in models.Pillow.__table__.columns:
             col = col_obj.name
-            # print("col________", col)
             if hasattr(db_pillow, col):
                 setattr(db_pillow, col, getattr(pillow, col))
         await db.commit()

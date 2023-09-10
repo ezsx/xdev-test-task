@@ -72,7 +72,6 @@ class PillowsRouter:
             user_id: Union[int, None] = None,
             uuid: Union[UUID4, None] = None
     ):
-        print("_____________router create pillows")
         result = await create_pillow_with_history(self.sess, amount, user_id, uuid)
         return result
 

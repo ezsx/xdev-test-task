@@ -27,10 +27,6 @@ async def create_pillow_with_history(db: AsyncSession, amount: int, user_id: int
     try:
         # Создаем запись в таблицу pillow_history
         cph = await create_pillow_history(db, user_id, uuid, amount)
-        # debug
-        # print("_____________CPH_____________________")
-        # print(cph)
-        # print("______________CPH____________________")
         # Идем во вторую таблицу и узнаем, есть ли там user_id
         db_pillow = await get_pillow(db, user_id, uuid)
         # если есть
@@ -54,6 +50,6 @@ async def create_pillow_with_history(db: AsyncSession, amount: int, user_id: int
         await db.commit()
         return 0
     except:
-        # Rollback the transaction in case of error
+        # Rollback in case of error
         await db.rollback()
         raise
