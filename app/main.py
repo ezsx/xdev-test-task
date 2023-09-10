@@ -1,10 +1,12 @@
+import logging
+
 from fastapi import FastAPI
 
 from loguru import logger as log
 
-from core.events import Events
+# from core.events import Events
 from starlette.middleware.cors import CORSMiddleware
-
+from core.db.db_session import init_models
 from api.router import main_router
 
 
@@ -21,9 +23,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# @app.on_event("startup")
+# def start_db():
+#     # await init_models()
+#     logging.info('=> init models pass...ok')
+#     print('=> init models pass...ok')
 
-events = Events(have_db=True)
-app.add_event_handler("startup", events.get_startup())
-app.add_event_handler("shutdown", events.get_shutdown())
+# events = Events(have_db=True)
+# app.add_event_handler("startup", events.get_startup())
+# app.add_event_handler("shutdown", events.get_shutdown())
 
 app.include_router(main_router)

@@ -32,9 +32,9 @@ services:
             - /containers/src/test_task/postgres/data:/var/lib/postgresql/data
         networks:
             - default
-
-networks:
-    default:
-        external:
-            name: test
+#
+#networks:
+#    default:
+#        external:
+#            name: test
 

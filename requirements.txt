@@ -36,13 +36,13 @@ typing-inspect==0.9.0
 # Loguru
 loguru==0.7.0
 
-# Uvicorn
+# Uvicorn # uvloop
 click==8.1.7
 h11==0.14.0
 httptools==0.6.0
 PyYAML==6.0.1
 uvicorn==0.23.2
-uvloop==0.17.0
+
 watchfiles==0.20.0
 
 
@@ -50,4 +50,11 @@ watchfiles==0.20.0
 asgi-correlation-id==4.2.0
 orjson==3.9.5
 idna==3.4
+
+psycopg[binary]==3.1.9
+
+sqlacodegen
+
+alembic==1.11.1
+alembic_utils==0.7.6
 
