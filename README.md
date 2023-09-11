@@ -10,7 +10,8 @@
 
 Использовал другую логику подключения к бд через session а не connect.
 
-Модели алхимии генерил в [gen_migration.py](db%2Fgen_migration.py)
+Модели алхимии генерил в [gen_migration.py](db%2Fgen_migration.py).
+
 
 
 
